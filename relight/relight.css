@@ -1,0 +1,74 @@
+/* Relight — 잿불 속의 군단 (Band of Blades)
+   군사 다크판타지: 재와 잿불, 패주하는 군단, 붉은 깃발.
+   scripts/site/style.css 구조를 그대로 상속하고 팔레트만 재정의한다. */
+
+@import url("../style.css");
+
+:root {
+  --bg: #1a1815;         /* 잿빛 철회색 기조 */
+  --bg-deep: #0e0d0b;
+  --panel: #232120;
+  --panel-edge: #3a3531;
+  --ink: #cec7ba;        /* 재를 뒤집어쓴 파치먼트 */
+  --ink-dim: #948d81;
+  --ink-faint: #6a645b;
+  --brass: #d5602c;      /* 잿불(ember) 주황 — 링크·포인트 */
+  --brass-bright: #f08a44;
+  --crimson: #a52029;    /* 진홍 깃발 */
+  --rule: #3a3531;
+  --shadow: rgba(0, 0, 0, 0.62);
+}
+
+/* 상속된 body 배경(놋쇠 그라디언트)을 재-잿불 톤으로 교체 */
+body {
+  background-image: radial-gradient(ellipse at 50% -10%, #2a241d 0%, var(--bg) 55%, var(--bg-deep) 100%);
+}
+
+::selection { background: rgba(213, 96, 44, 0.35); }
+
+/* 밝은 파치먼트 헤딩색을 재빛으로 */
+.hero h1,
+.recap-head h1,
+.season-card h2,
+article.recap h2,
+article.recap strong { color: #e7dfd2; }
+
+/* 히어로 kicker/구분선을 잿불·진홍 깃발 모티프로 */
+.hero .kicker { color: var(--brass); }
+.hero .rule { border-top-color: var(--crimson); opacity: 0.85; }
+
+/* 붉은 깃발: 카드 좌측 띠 기본색을 진홍으로 (에피소드별 accent가 있으면 그것을 우선) */
+.season-card { border-left-color: var(--accent, var(--crimson)); }
+
+/* 캠페인 인트로 메타 라인 */
+.campaign-meta {
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-align: center;
+  margin: 1.3rem 0 0;
+}
+
+/* 인물 페이지 진입 바 */
+.person-nav {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2.6rem 0 0.5rem;
+  flex-wrap: wrap;
+}
+
+.person-nav a {
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-top: 2px solid var(--crimson);
+  padding: 0.7rem 1.6rem;
+  color: var(--ink);
+  letter-spacing: 0.06em;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.person-nav a:hover { border-color: var(--brass); color: var(--brass-bright); }
+
+/* 오너먼트를 진홍 깃발색으로 */
+.ornament { color: var(--crimson); }
