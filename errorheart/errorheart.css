@@ -1,0 +1,180 @@
+/* ErrorHeart — The Error Heart (Daggerheart)
+   판타지 + 기계인형·아르카나: 심야 인디고 하늘 아래 발광하는 청금과 놋쇠 톱니.
+   scripts/site/style.css 구조를 그대로 상속하고 팔레트·질감만 재정의한다.
+   후속 셀 애니메이션 톤 삽화에 맞춰 채도를 어둠칼·Relight 보다 조금 밝게 둔다. */
+
+@import url("../style.css");
+
+:root {
+  --bg: #161a30;         /* 심야 남색-인디고 */
+  --bg-deep: #0b0d1c;
+  --panel: #1e2240;
+  --panel-edge: #363c62;
+  --ink: #d5d9f0;        /* 달빛에 식은 파치먼트 (냉색) */
+  --ink-dim: #9aa0cc;
+  --ink-faint: #6b7099;
+  --brass: #3fc2d4;      /* 아르카나 청금 — 링크·포인트(발광) */
+  --brass-bright: #6fe3f2;
+  --gold: #d9a94e;       /* 기계인형의 놋쇠 금빛 — 부포인트 */
+  --gold-bright: #f0c877;
+  --rule: #363c62;
+  --shadow: rgba(0, 0, 0, 0.6);
+}
+
+/* 상속된 body 배경(놋쇠 그라디언트)을 심야 인디고 → 아르카나 미광으로 교체 */
+body {
+  background-image: radial-gradient(ellipse at 50% -10%, #23305a 0%, var(--bg) 52%, var(--bg-deep) 100%);
+}
+
+::selection { background: rgba(63, 194, 212, 0.35); }
+
+/* 밝은 파치먼트 헤딩색을 냉색 은백으로 */
+.hero h1,
+.recap-head h1,
+.season-card h2,
+article.recap h2,
+article.recap strong { color: #eef1fc; }
+
+/* 히어로 kicker/구분선: 청금 발광 + 놋쇠 금선 모티프 */
+.hero .kicker {
+  color: var(--brass);
+  text-shadow: 0 0 14px rgba(63, 194, 212, 0.4);
+}
+.hero .rule { border-top-color: var(--gold); opacity: 0.85; }
+
+/* 카드 좌측 띠 기본색을 놋쇠 금빛으로 (에피소드별 accent가 있으면 그것을 우선) */
+.season-card { border-left-color: var(--accent, var(--gold)); }
+
+/* 인용/blockquote 좌선을 청금으로 */
+article.recap blockquote { border-left-color: var(--brass); }
+
+/* 셀 애니메이션 톤 삽화: 채도를 죽이지 않고 살짝 끌어올린다 */
+.season-card .thumb img { filter: saturate(1.02) brightness(0.97); }
+article.recap figure img { filter: saturate(1.03); }
+
+/* 캠페인 인트로 메타 라인 */
+.campaign-meta {
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-align: center;
+  margin: 1.3rem 0 0;
+}
+
+/* 인물 페이지 진입 바 */
+.person-nav {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2.6rem 0 0.5rem;
+  flex-wrap: wrap;
+}
+
+.person-nav a {
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-top: 2px solid var(--gold);
+  padding: 0.7rem 1.6rem;
+  color: var(--ink);
+  letter-spacing: 0.06em;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.person-nav a:hover { border-color: var(--brass); color: var(--brass-bright); }
+
+/* 오너먼트를 청금 발광으로 */
+.ornament { color: var(--brass); }
+
+/* ---------- 인물 카드 (characters) ---------- */
+
+/* 카드로 승격되지 않은 h3 = 그룹 소제목 */
+article.recap h3 {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #eef1fc;
+  letter-spacing: 0.02em;
+  margin: 2.6rem 0 0.3rem;
+}
+
+.person-card {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 0 1.4rem;
+  margin: 1.6rem 0;
+  padding: 1.3rem 1.4rem;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-left: 3px solid var(--brass);
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.person-card.is-fallen { border-left-color: var(--gold); }
+
+.person-card .portrait {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.person-card .portrait img {
+  display: block;
+  width: 7rem;
+  height: 7rem;
+  object-fit: cover;
+  object-position: 50% 18%;
+  border: 1px solid var(--panel-edge);
+  filter: saturate(1.02);
+}
+
+.person-card.is-fallen .portrait img { filter: saturate(0.4) brightness(0.85); }
+
+.person-card .portrait .noimg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 7rem;
+  height: 7rem;
+  background: var(--bg-deep);
+  border: 1px solid var(--panel-edge);
+  color: var(--ink-faint);
+  font-size: 1.3rem;
+  user-select: none;
+}
+
+.person-card .person-info { min-width: 0; }
+
+.person-card h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: #eef1fc;
+  letter-spacing: 0.02em;
+}
+
+.person-card .person-meta {
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--brass);
+}
+
+.person-card.is-fallen .person-meta { color: var(--gold-bright); }
+
+article.recap .person-card p { margin: 0.6rem 0 0; font-size: 0.93rem; }
+article.recap .person-card p.person-meta { margin: 0 0 0.75rem; }
+
+@media (max-width: 560px) {
+  .person-card { grid-template-columns: 5.2rem 1fr; gap: 0 1rem; padding: 1.1rem; }
+  .person-card .portrait img,
+  .person-card .portrait .noimg { width: 5.2rem; height: 5.2rem; }
+}
+
+/* 각주 */
+article.recap .footnote {
+  margin-top: 2.5rem;
+  font-size: 0.82rem;
+  color: var(--ink-dim);
+}
+article.recap .footnote ol { padding-left: 1.3rem; color: var(--ink-dim); }
+article.recap .footnote li { margin: 0.6rem 0; }
+a.footnote-ref { font-size: 0.72em; }
