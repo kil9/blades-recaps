@@ -349,15 +349,6 @@ article.recap hr {
    시즌 카드(.season-card)는 썸네일 이미지가 있지만 인물은 초상이 없어 머리글자 배지를
    대신 세운다. 포인트 컬러는 인물마다 --accent 로 들어온다. */
 
-.section-title a {
-  color: inherit;
-  border-bottom: 1px solid transparent;
-}
-.section-title a:hover {
-  color: var(--brass-bright);
-  border-bottom-color: var(--brass);
-}
-
 .people-list {
   list-style: none;
   margin: 0;
