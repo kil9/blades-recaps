@@ -343,3 +343,150 @@ article.recap hr {
 .recap-footer-nav .up { text-align: center; color: var(--ink-dim); }
 .recap-footer-nav .next { text-align: right; }
 .recap-footer-nav .placeholder { visibility: hidden; }
+
+/* ---------- People (최상위 인물 섹션) ----------
+   캠페인 하위 인물 문서가 쓰는 .person-card 와 이름이 겹치지 않게 .person-tile 을 쓴다.
+   시즌 카드(.season-card)는 썸네일 이미지가 있지만 인물은 초상이 없어 머리글자 배지를
+   대신 세운다. 포인트 컬러는 인물마다 --accent 로 들어온다. */
+
+.section-title a {
+  color: inherit;
+  border-bottom: 1px solid transparent;
+}
+.section-title a:hover {
+  color: var(--brass-bright);
+  border-bottom-color: var(--brass);
+}
+
+.people-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+}
+
+.person-tile {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4.6rem 1fr;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-left: 3px solid var(--accent, var(--brass));
+  box-shadow: 0 10px 30px var(--shadow);
+  overflow: hidden;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.person-tile:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent, var(--brass));
+}
+
+.person-tile .badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg,
+    color-mix(in srgb, var(--accent, var(--brass)) 26%, var(--bg-deep)),
+    var(--bg-deep));
+  border-right: 1px solid var(--panel-edge);
+  text-decoration: none;
+}
+
+.person-tile .badge span {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.6rem;
+  color: var(--accent, var(--brass));
+  opacity: 0.92;
+}
+
+.person-tile .body {
+  padding: 1.1rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.person-tile .label {
+  font-family: 'Cinzel', 'Noto Serif KR', serif;
+  font-size: 0.64rem;
+  letter-spacing: 0.22em;
+  color: var(--accent, var(--brass));
+  margin: 0;
+}
+
+.person-tile h2 {
+  font-size: 1.18rem;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.person-tile h2 a { color: inherit; }
+.person-tile h2 a:hover { color: var(--brass-bright); }
+
+.person-tile .theme {
+  font-size: 0.9rem;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+.person-tile .excerpt {
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+/* 인물 페이지 헤더의 테마 한 줄 (제목과 리드 사이) */
+.recap-head .person-theme {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.02rem;
+  color: var(--accent, var(--brass));
+  margin: 0.2rem 0 0.9rem;
+}
+
+@media (max-width: 30rem) {
+  .person-tile { grid-template-columns: 3.4rem 1fr; }
+  .person-tile .badge span { font-size: 1.25rem; }
+}
+
+/* 본문 표. 리캡 산문에는 표가 없었지만 인물 원고(담당 PC 일람, 시즌별 변화)가 쓴다.
+   좁은 화면에서 페이지 전체가 가로로 밀리지 않게 표만 따로 스크롤시킨다. */
+
+article.recap .table-scroll {
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+article.recap table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 28rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+article.recap thead th {
+  text-align: left;
+  font-family: 'Cinzel', 'Noto Serif KR', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-faint);
+  padding: 0 0.9rem 0.6rem 0;
+  border-bottom: 1px solid var(--accent, var(--brass));
+  white-space: nowrap;
+}
+
+article.recap tbody td {
+  padding: 0.6rem 0.9rem 0.6rem 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  color: var(--ink-dim);
+}
+
+article.recap tbody tr:last-child td { border-bottom: 0; }
+article.recap tbody td:first-child { color: var(--ink); white-space: nowrap; }
