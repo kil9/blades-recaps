@@ -489,3 +489,19 @@ article.recap tbody td {
 
 article.recap tbody tr:last-child td { border-bottom: 0; }
 article.recap tbody td:first-child { color: var(--ink); white-space: nowrap; }
+
+/* 인물 원고 하단의 "근거는 …" 문단. 글의 일부라기보다 메타정보라, 본문과 같은 톤으로 두면
+   마지막 단락이 결론처럼 읽힌다. 크기·명도를 한 단계 낮춘다. */
+
+article.recap .doc-note {
+  margin-top: 2.5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: var(--ink-faint);
+}
+
+article.recap .doc-note p { margin: 0.6rem 0 0; }
+article.recap .doc-note p:first-child { margin-top: 0; }
+article.recap .doc-note strong { color: var(--ink-dim); font-weight: 400; }
