@@ -505,3 +505,12 @@ article.recap .doc-note {
 article.recap .doc-note p { margin: 0.6rem 0 0; }
 article.recap .doc-note p:first-child { margin-top: 0; }
 article.recap .doc-note strong { color: var(--ink-dim); font-weight: 400; }
+
+/* 초상 삽화. 인물 페이지가 Relight 초상(정사각 500-640px)을 끌어다 쓰는데, 에피소드 삽화와
+   같은 전폭으로 두면 화면을 다 잡아먹는다. 가운데로 모으고 폭만 제한한다. */
+
+article.recap figure.portrait {
+  max-width: 20rem;
+  margin-left: auto;
+  margin-right: auto;
+}
