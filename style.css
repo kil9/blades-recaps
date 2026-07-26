@@ -514,3 +514,32 @@ article.recap figure.portrait {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* 카드 밴드에 얼굴 이미지가 들어간 경우. 밴드가 좁고 세로로 긴 자리라 원본 비율이 어떻든
+   잘라서 채운다. 인물 페이지 링크는 제목 쪽 stretched link 가 이미 덮고 있다. */
+
+/* 밴드는 flex 로 글자를 가운데 놓는 자리였는데, flex 자식에 height:100% 를 주면 부모 높이가
+   확정되지 않아 이미지가 0 으로 접힌다. .season-card .thumb 와 같은 absolute 방식으로 채운다. */
+.person-tile .badge.has-face {
+  display: block;
+  position: relative;
+  padding: 0;
+  background: var(--bg-deep);
+  overflow: hidden;
+}
+
+.person-tile .badge.has-face img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;   /* 인물 그림은 위쪽에 얼굴이 오는 경우가 많다 */
+  filter: saturate(0.92) brightness(0.94);
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.person-tile:hover .badge.has-face img {
+  filter: saturate(1) brightness(1);
+  transform: scale(1.03);
+}
