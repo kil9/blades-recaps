@@ -375,6 +375,14 @@ article.recap hr {
   border-color: var(--accent, var(--brass));
 }
 
+/* 제목 링크를 카드 전체로 확장 (stretched link) — .season-card 와 같은 방식.
+   이게 없으면 이름 글자 위에서만 클릭이 먹어서, 카드가 커질수록 헛클릭이 늘어난다. */
+.person-tile h2 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
 .person-tile .badge {
   display: flex;
   align-items: center;
